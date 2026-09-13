@@ -4,8 +4,7 @@ COPY package*.json ./
 RUN apk add --no-cache tini
 ENTRYPOINT ["/sbin/tini", "--"]
 //
-// 
-//TEST
+//
 FROM base as dev
 WORKDIR /container
 RUN npm install 
