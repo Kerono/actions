@@ -1,0 +1,43 @@
+import { FC } from "react";
+import Image from "next/image";
+import type { Info } from "@/variables";
+import styles from "./additionalInfoCard.module.scss";
+
+type Props = {
+  title: string;
+  imgSrc: string;
+  description?: string;
+  info: Info[];
+};
+
+const AdditionalInfoCard: FC<Props> = ({
+  title,
+  imgSrc,
+  description,
+  info,
+}) => {
+  return (
+    <div className={styles.wrapper} role="card">
+      <div className={styles.title}>{title}</div>
+      <Image
+        priority
+        width={120}
+        height={120}
+        src={imgSrc}
+        alt={title}
+        unoptimized
+      />
+      {description && <div>{description}</div>}
+      <div className={styles["info-wrapper"]}>
+        {info.map(({ title, value }) => (
+          <div className={styles.content} key={title}>
+            <div>{title}</div>
+            {value}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export { AdditionalInfoCard };
